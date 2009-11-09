@@ -1,6 +1,7 @@
 from __future__ import with_statement
 import os, math, random, datetime, re
 import cPickle as pickle
+import subprocess
 
 unique = lambda(lizt): list(set(lizt))
 any_duplicated = lambda(lizt): len(unique(lizt)) < len(lizt)
