@@ -74,7 +74,8 @@ def write(data, fname):
     with open(fname, 'w') as f:
         f.write(data)
 def write_lines(lines, fname):
-    write('\n'.join(lines) + '\n', fname)        
+    write('\n'.join(map(str, lines)) + '\n', fname)        
+
 def count_columns(fname, sep='\t'):
     '''Count number of tab-separated columns on first line'''
     with open(fname) as f:
