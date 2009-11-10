@@ -1,7 +1,6 @@
 from __future__ import with_statement
 import os, math, random, datetime, re
 import cPickle as pickle
-import subprocess
 
 unique = lambda(lizt): list(set(lizt))
 any_duplicated = lambda(lizt): len(unique(lizt)) < len(lizt)
@@ -51,12 +50,12 @@ def datetimenow():
     return str(datetime.datetime.now()).split('.')[0].replace(' ', '_').replace(':','.')
 
 def pickle_object(obj, pfile):
-    pfile = open(pfile, 'w')
+    pfile = open(pfile, 'wb')
     pickle.dump(obj, pfile)
     pfile.close()
     
 def load_pickled_object(pfile):
-    pfile = open(pfile, 'r')
+    pfile = open(pfile, 'rb')
     obj = pickle.load(pfile)
     pfile.close()
     return obj
@@ -74,8 +73,7 @@ def write(data, fname):
     with open(fname, 'w') as f:
         f.write(data)
 def write_lines(lines, fname):
-    write('\n'.join(map(str, lines)) + '\n', fname)        
-
+    write('\n'.join(lines) + '\n', fname)        
 def count_columns(fname, sep='\t'):
     '''Count number of tab-separated columns on first line'''
     with open(fname) as f:
