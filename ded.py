@@ -6,7 +6,7 @@ unique = lambda(lizt): list(set(lizt))
 any_duplicated = lambda(lizt): len(unique(lizt)) < len(lizt)
 flatten = lambda(lizt): sum(lizt, [])
 islist = lambda(x): type(x) == type([])
-which = lambda(lizt): [i for i in range(0,len(lizt)) if lizt[i]]
+which = lambda(lizt): [i for i in range(0, len(lizt)) if lizt[i]]
 def tabulate(lizt):
     vals = unique(lizt)
     return dict(zip(vals, map(lambda(val): lizt.count(val), vals)))
