@@ -122,6 +122,19 @@ def allocate_chunks(L, p):
     starts = [0] + cs[:-1]
     return zip(starts, ends)
 
+def split_into_chunks(x, chunksize):
+    if chunksize <= 1:
+        raise Exception('Chunksize must be at least 1.')
+    n = len(x)
+    ans = []
+    start = 0
+    end = chunksize
+    while start < n:
+        ans.append(x[start:min(end, n)])
+        start = end
+        end += chunksize
+    return ans
+        
 class Table(dict):
     def __init__(self, lizt):
         vals = list(set(lizt))
