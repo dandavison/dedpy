@@ -191,3 +191,19 @@ def assert_files_identical(files):
     diffs = (diff(files[i], files[i-1]) for i in range(1, len(files)))
     if any(diffs):
         raise Exception('Files not identical')
+def read_url(hostname = 'localhost', port = 80, url = u'/'):
+    """Taken from cmdline.py. I have removed exception handling so
+    that it must now be performed by the client."""
+    import httplib
+    conn = httplib.HTTPConnection(hostname, port = port)
+    try:
+        conn.request("GET", url)
+    except Exception, e:
+        raise Exception('Failed to connect to host: %s' % e)
+    resp = conn.getresponse()
+    conn.close()
+    if resp.status == 200:
+        return resp
+    else:
+        raise Exception('Failed to get response: (%s, %s)' % (
+                resp.status, resp.reason))
