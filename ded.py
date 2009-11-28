@@ -1,5 +1,5 @@
 from __future__ import with_statement
-import os, math, random, datetime, re
+import os, math, random, datetime, re, codecs
 import cPickle as pickle
 
 unique = lambda(lizt): list(set(lizt))
@@ -70,7 +70,7 @@ def read_lines(fname):
     with open(fname, 'r') as f:
         return f.read().split()
 def write(data, fname):
-    with open(fname, 'w') as f:
+    with codecs.open(fname, 'w', 'utf-8') as f:
         f.write(data)
 def write_lines(lines, fname):
     write('\n'.join(lines) + '\n', fname)        
