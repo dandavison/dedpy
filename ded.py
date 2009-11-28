@@ -67,8 +67,10 @@ def count_lines(fname):
     return i
     
 def read_lines(fname):
+    """Return list of lines, omitting leading and trailing blanks."""
     with open(fname, 'r') as f:
-        return f.read().split()
+        return f.read().strip().split()
+
 def write(data, fname):
     with codecs.open(fname, 'w', 'utf-8') as f:
         f.write(data)
