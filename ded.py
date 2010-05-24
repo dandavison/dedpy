@@ -166,6 +166,9 @@ def temp_filename_base(tempdir, base):
     return os.path.join(tempdir, '-'.join([base, str(os.getpid())]))
 
 def diff(file1, file2):
+    for f in [file1, file2]:
+        if not os.path.exists(f):
+            raise Exception('No such file: %s' % f)
     o, e = subprocess.Popen(['diff', file1, file2], stdout=subprocess.PIPE).communicate()
     if e: raise Exception('diff produced error output')
     return o
