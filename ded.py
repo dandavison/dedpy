@@ -1,5 +1,6 @@
 from __future__ import with_statement
 import os, math, random, datetime, re, codecs
+import subprocess
 import cPickle as pickle
 
 unique = lambda(lizt): list(set(lizt))
