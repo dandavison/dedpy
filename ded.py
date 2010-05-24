@@ -7,9 +7,9 @@ any_duplicated = lambda(lizt): len(unique(lizt)) < len(lizt)
 flatten = lambda(lizt): sum(lizt, [])
 islist = lambda(x): type(x) == type([])
 which = lambda(lizt): [i for i in range(0, len(lizt)) if lizt[i]]
-def tabulate(lizt):
-    vals = unique(lizt)
-    return dict(zip(vals, map(lambda(val): lizt.count(val), vals)))
+def tabulate(x):
+    vals = sorted(unique(x))
+    return dict(zip(vals, map(lambda(val): x.count(val), vals)))
 
 def most_frequent_element(lizt):
     if not lizt: return None
@@ -166,6 +166,9 @@ def temp_filename_base(tempdir, base):
     return os.path.join(tempdir, '-'.join([base, str(os.getpid())]))
 
 def diff(file1, file2):
+    for f in [file1, file2]:
+        if not os.path.exists(f):
+            raise Exception('No such file: %s' % f)
     o, e = subprocess.Popen(['diff', file1, file2], stdout=subprocess.PIPE).communicate()
     if e: raise Exception('diff produced error output')
     return o
