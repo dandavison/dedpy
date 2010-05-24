@@ -7,9 +7,9 @@ any_duplicated = lambda(lizt): len(unique(lizt)) < len(lizt)
 flatten = lambda(lizt): sum(lizt, [])
 islist = lambda(x): type(x) == type([])
 which = lambda(lizt): [i for i in range(0, len(lizt)) if lizt[i]]
-def tabulate(lizt):
-    vals = unique(lizt)
-    return dict(zip(vals, map(lambda(val): lizt.count(val), vals)))
+def tabulate(x):
+    vals = sorted(unique(x))
+    return dict(zip(vals, map(lambda(val): x.count(val), vals)))
 
 def most_frequent_element(lizt):
     if not lizt: return None
